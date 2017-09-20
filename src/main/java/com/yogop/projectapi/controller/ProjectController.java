@@ -16,23 +16,24 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
-
-    @RequestMapping(value = "")
+    
+    @GetMapping("")
+    @CrossOrigin(origins = "http://localhost:4200")
     public List<Project> getAllProjects() {
         return projectService.getAllProjects();
     }
 
-    @RequestMapping(value = "{id}")
+    @GetMapping("{id}")
     public Project getProject(@PathVariable long id) {
         return projectService.getProject(id);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @PostMapping("")
     public void addProject(@RequestBody Project project) {
         projectService.addProject(project);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @PutMapping("{id}")
     public void updateProject(@PathVariable long id, @RequestBody Project project) {
         projectService.updateProject(id, project);
     }
